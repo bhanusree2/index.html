@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Reservation System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('flightRS.jpg');
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            width: 400px;
+            margin: 20px auto;
+        }
+        input[type="text"], input[type="password"], input[type="email"], input[type="date"], input[type="number"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        h2, p, a {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        form, div {
+            margin-bottom: 20px;
+        }
+        nav {
+            display: none;
+        }
+        section {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav>
+        <button onclick="showSection('login')">Admin Login</button>
+        <button onclick="showSection('search')">Search Flights</button>
+    </nav>
+
+    <!-- Index Page -->
+    <section id="index" class="container">
+        <h1>Welcome to the Online Flight Reservation System</h1>
+        <button onclick="showSection('login')">Admin Login</button>
+        <button onclick="showSection('search')">Search Flights</button>
+    </section>
+
+    <!-- Administrator Login Page -->
+    <section id="login" class="container">
+        <h2>Administrator Login</h2>
+        <form onsubmit="showSection('search'); return false;">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <a href="#" onclick="showSection('forgot-password')">Forgot Password?</a>
+    </section>
+
+    <!-- Forgot Password Page -->
+    <section id="forgot-password" class="container">
+        <h2>Forgot Password</h2>
+        <form onsubmit="alert('Password reset link sent to your email.'); showSection('login'); return false;">
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Reset Password</button>
+        </form>
+        <a href="#" onclick="showSection('login')">Back to Login</a>
+    </section>
+
+    <!-- Search Flight Page -->
+    <section id="search" class="container">
+        <h2>Search Flights</h2>
+        <form onsubmit="showSection('booking'); return false;">
+            <label for="from">From:</label>
+            <input type="text" id="from" name="from" required>
+
+            <label for="to">To:</label>
+            <input type="text" id="to" name="to" required>
+
+            <label for="departure-date">Departure Date:</label>
+            <input type="date" id="departure-date" name="departure-date" required>
+
+            <label for="return-date">Return Date:</label>
+            <input type="date" id="return-date" name="return-date">
+
+            <label for="passengers">Passengers:</label>
+            <input type="number" id="passengers" name="passengers" required>
+
+            <button type="submit">Search Flights</button>
+        </form>
+    </section>
+
+    <!-- Book Ticket Page -->
+    <section id="booking" class="container">
+        <h2>Book Ticket</h2>
+        <form onsubmit="showSection('payment'); return false;">
+            <label for="flight">Select Flight:</label>
+            <select id="flight" name="flight" required>
+                <option value="flight1">Flight 1</option>
+                <option value="flight2">Flight 2</option>
+                <option value="flight3">Flight 3</option>
+            </select>
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="passport">Passport Number:</label>
+            <input type="text" id="passport" name="passport" required>
+
+            <button type="submit">Book Ticket</button>
+        </form>
+    </section>
+
+    <!-- Ticket Payment Page -->
+    <section id="payment" class="container">
+        <h2>Ticket Payment</h2>
+        <form onsubmit="showSection('my-ticket'); return false;">
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" required>
+
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" name="expiry-date" required>
+
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" required>
+
+            <button type="submit">Pay Now</button>
+        </form>
+    </section>
+
+    <!-- My Ticket Page -->
+    <section id="my-ticket" class="container">
+        <h2>My Ticket</h2>
+        <p>Ticket details here...</p>
+        <button onclick="showSection('cancel-ticket')">Cancel Ticket</button>
+        <button onclick="showSection('feedback')">Leave Feedback</button>
+        <button onclick="showSection('print-ticket')">Print Ticket</button>
+    </section>
+
+    <!-- Cancel Ticket Page -->
+    <section id="cancel-ticket" class="container">
+        <h2>Cancel Ticket</h2>
+        <form onsubmit="alert('Ticket canceled.'); showSection('my-ticket'); return false;">
+            <label for="ticket-id">Enter Your Ticket ID:</label>
+            <input type="text" id="ticket-id" name="ticket-id" required>
+            <button type="submit">Cancel Ticket</button>
+        </form>
+    </section>
+
+    <!-- Feedback Page -->
+    <section id="feedback" class="container">
+        <h2>Customer Feedback</h2>
+        <form onsubmit="alert('Feedback submitted.'); showSection('my-ticket'); return false;">
+            <label for="experience">How was your experience?</label>
+            <textarea id="experience" name="experience" rows="5" required></textarea>
+
+            <label for="rating">Rate our service:</label>
+            <select id="rating" name="rating" required>
+                <option value="5">Excellent</option>
+                <option value="4">Good</option>
+                <option value="3">Average</option>
+                <option value="2">Poor</option>
+                <option value="1">Terrible</option>
+            </select>
+
+            <button type="submit">Submit Feedback</button>
+        </form>
+    </section>
+
+    <!-- Print Ticket Page -->
+    <section id="print-ticket" class="container">
+        <h2>Print Your Ticket</h2>
+        <form onsubmit="alert('Printing ticket...'); return false;">
+            <label for="ticket-id">Enter Your Ticket ID:</label>
+            <input type="text" id="ticket-id" name="ticket-id" required>
+            <button type="submit">Print Ticket</button>
+        </form>
+    </section>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => section.style.display = 'none');
+            document.getElementById(sectionId).style.display = 'block';
+        }
+
+        // Show the index page by default
+        showSection('index');
+    </script>
+
+</body>
+</html>
